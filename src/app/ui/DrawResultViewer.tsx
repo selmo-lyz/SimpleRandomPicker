@@ -45,7 +45,7 @@ export default function DrawResultViewer({ results, setResults }: Props) {
     setResults(newResults);
   };
 
-  const Row = memo(({ index, style, candidate, prize }: RowProps) => (
+  const ResultRow = ({ index, style, candidate, prize }: RowProps) => (
     <div
       style={style}
       className={`relative flex text-sm border-b border-gray-200 hover:bg-gray-50 ${
@@ -64,7 +64,8 @@ export default function DrawResultViewer({ results, setResults }: Props) {
         X
       </button>
     </div>
-  ));
+  );
+  const Row = memo(ResultRow);
 
   const renderRow = ({ index, style }: { index: number; style: React.CSSProperties }) => (
     <Row

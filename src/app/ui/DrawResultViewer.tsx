@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { DrawResult, Prize } from "@/app/lib/draw";
+import { DrawResult } from "@/app/lib/draw";
 import { FixedSizeList as List } from "react-window";
 
 type Props = {

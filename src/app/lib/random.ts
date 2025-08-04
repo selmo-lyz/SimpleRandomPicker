@@ -22,7 +22,7 @@ export function getRandomValue(
 export function fisherYatesShuffle<T>(arr: ReadonlyArray<T>): T[] {
   const shuffledArr: T[] = [...arr]
   for (let i = shuffledArr.length - 1; i > 0; --i) {
-    let j = getRandomValue(0, i);
+    const j = getRandomValue(0, i);
     [shuffledArr[i], shuffledArr[j]] = [shuffledArr[j], shuffledArr[i]];
   }
   return shuffledArr;

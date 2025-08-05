@@ -17,15 +17,15 @@ export default function CandidateInput({ onChange }: Props) {
   const placeholderText = `小明\n小美\n小華`;
 
   return (
-    <div>
-      <h2 className="text-lg font-medium mb-2">
-        候選名單（每行一位）：
-      </h2>
+    <div className="mt-8">
+      <h3 className="text-lg font-medium">
+        候選名單
+      </h3>
       <textarea
         rows={8}
         onChange={handleInput}
         placeholder={placeholderText}
-        className="w-full p-2 border rounded"
+        className="w-full p-2 border rounded mt-2"
       />
     </div>
   );

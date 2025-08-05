@@ -63,8 +63,8 @@ export default function PrizeInput({ prizes, setPrizes, drawResult}: Props) {
   const placeholderText = `格式：獎品名稱,數量，例如：\n100 元禮券,2\n電影票x2,1`;
 
   return (
-    <div className="mt-6">
-      <div className="flex justify-between items-center mb-2">
+    <div className="mt-8">
+      <div className="flex justify-between items-center">
         <h2 className="text-lg font-medium">獎品清單</h2>
         <button
           onClick={handleIsCsvModeChange}
@@ -80,12 +80,12 @@ export default function PrizeInput({ prizes, setPrizes, drawResult}: Props) {
           value={csvText}
           onChange={(e) => handleCsvChange(e.target.value)}
           placeholder={placeholderText}
-          className="w-full border p-2 rounded font-mono"
+          className="w-full border p-2 rounded font-mono mt-2"
         />
       ) : (
         <>
           {prizes.map((prize, index) => (
-            <div key={index} className="flex items-center gap-2 mb-2">
+            <div key={index} className="flex items-center gap-2 mt-2">
               <input
                 type="text"
                 placeholder="獎品名稱"

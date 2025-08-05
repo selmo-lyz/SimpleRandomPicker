@@ -15,11 +15,11 @@ export default function Home() {
   const [drawRules, setDrawRules] = useState<DrawRules>({ repeat: "no-repeat", order: "first" });
   
   return (
-    <div className="h-[100%] flex flex-col md:flex-row gap-4 justify-center items-center md:items-start">
-      <div className="bg-white rounded-2xl min-h-200 max-w-xl w-full px-8 py-8">
-        <h1 className="text-2xl font-bold mb-8 text-center">簡易抽獎機</h1>
+    <div className="h-[100%] flex flex-col md:flex-row md:gap-4 justify-center items-center md:items-start">
+      <div className="bg-white md:rounded-2xl min-h-100 md:min-h-200 max-w-xl w-full px-4 md:px-8 py-8">
+        <h1 className="text-2xl font-bold text-center">簡易抽獎機</h1>
 
-        <div className="flex justify-start mt-6 gap-2">
+            <div className="flex justify-between mt-8">
           <DrawButton
             candidates={candidates}
             prizes={prizes}
@@ -63,7 +63,7 @@ export default function Home() {
         <PrizeInput prizes={prizes} setPrizes={setPrizes} drawResult={results}/>
       </div>
 
-      <div className="bg-white rounded-2xl min-h-200 max-w-xl w-full px-8 py-4">
+      <div className="bg-white md:rounded-2xl min-h-100 md:min-h-200 max-w-xl w-full px-4 md:px-8 py-8">
         <DrawResultViewer results={results} setResults={setResults} />
       </div>
     </div>

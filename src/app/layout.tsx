@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="zh-Hant-TW">
       <body
-        className={`${notoSansTC.className} ${notoSansMono.className} antialiased`}
+        className={`${notoSansTC.className} ${notoSansMono.className} antialiased md:py-50 md:px-1`}
       >
         {children}
       </body>

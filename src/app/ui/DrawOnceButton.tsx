@@ -56,7 +56,7 @@ export default function DrawOnceButton({ candidates, prizes, drawRules, results,
       onClick={handleDraw}
       className="btn-bg hover:btn-bg text-white px-4 py-2 rounded"
     >
-      抽一次
+      抽出
     </button>
   );
 }

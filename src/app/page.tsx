@@ -37,14 +37,14 @@ export default function Home() {
         </div>
 
         <div className="mt-4 mb-4">
-          <label className="font-medium">抽獎規則：</label>
+              <label className="text-md font-medium">抽獎規則</label>
           <div className="flex flex-col md:flex-row justify-start gap-2 mt-2">
             <select
               className="border rounded px-2 py-1"
               value={drawRules.repeat}
               onChange={(e) => setDrawRules({ ...drawRules, repeat: e.target.value } as DrawRules)}
             >
-              <option value="no-repeat">每人僅得獎一次</option>
+                  <option value="no-repeat">僅能得獎一次</option>
               <option value="allow-repeat">允許重複得獎</option>
             </select>
             <select

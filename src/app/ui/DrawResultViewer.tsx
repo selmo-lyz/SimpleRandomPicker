@@ -92,7 +92,7 @@ export default function DrawResultViewer({ results, setResults }: Props) {
             onClick={downloadCsv}
             className="btn-bg hover:btn-bg text-white px-4 py-2 rounded transition"
           >
-            下載 CSV
+            下載
           </button>
         </div>
       </div>

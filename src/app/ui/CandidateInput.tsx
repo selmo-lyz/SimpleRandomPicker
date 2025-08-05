@@ -19,8 +19,8 @@ export default function CandidateInput({ onChange }: Props) {
   return (
     <div className="mt-8">
       <h3 className="text-lg font-medium">
-        候選名單（每行一位）：
-      </h2>
+        候選名單
+      </h3>
       <textarea
         rows={8}
         onChange={handleInput}

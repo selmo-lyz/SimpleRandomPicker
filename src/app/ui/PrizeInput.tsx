@@ -60,12 +60,12 @@ export default function PrizeInput({ prizes, setPrizes, drawResult}: Props) {
     setPrizes(newPrizes);
   };
 
-  const placeholderText = `格式：獎品名稱,數量，例如：\n100 元禮券,2\n電影票x2,1`;
+  const placeholderText = `格式：獎品名稱,數量\n100 元禮券,2\n電影票x2,1`;
 
   return (
     <div className="mt-8">
       <div className="flex justify-between items-center">
-        <h2 className="text-lg font-medium">獎品清單</h2>
+        <h3 className="text-lg font-medium">獎品清單</h3>
         <button
           onClick={handleIsCsvModeChange}
           className="text-blue-600 hover:underline"
@@ -123,9 +123,9 @@ export default function PrizeInput({ prizes, setPrizes, drawResult}: Props) {
           ))}
           <button
             onClick={addPrize}
-            className="mt-2 text-blue-600 hover:underline"
+            className="btn-bg hover:btn-bg text-white px-4 py-2 rounded transition mt-4"
           >
-            + 新增獎品
+            +
           </button>
         </>
       )}

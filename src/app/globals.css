@@ -30,11 +30,11 @@
   }
 
   .del-btn-bg {
-    background-color: #cc5200;
+    background-color: #929292;
   }
 
   .hover\:del-btn-bg:hover {
-    background-color: #923d04;
+    background-color: #686868;
   }
 }
 

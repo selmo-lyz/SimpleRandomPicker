@@ -77,10 +77,10 @@ export default function DrawResultViewer({ results, setResults }: Props) {
   );
 
   return (
-    <div className="mt-8">
-      <div className="flex justify-between items-center mb-4">
+    <div className="">
+      <div className="flex justify-between items-center">
         <h2 className="w-1/3 text-xl font-medium">得獎名單</h2>
-        <div className="w-2/3 flex justify-end gap-2">
+        <div className="w-2/3 flex justify-end gap-8">
           <button
           onClick={removeAllResult}
           className="del-btn-bg hover:del-btn-bg text-white px-4 py-2 rounded"
@@ -92,22 +92,22 @@ export default function DrawResultViewer({ results, setResults }: Props) {
             onClick={downloadCsv}
             className="btn-bg hover:btn-bg text-white px-4 py-2 rounded transition"
           >
-            下載 CSV
+            下載
           </button>
         </div>
       </div>
 
       {results.length === 0 ? (
-        <p className="text-gray-500">尚無得獎紀錄。</p>
+        <p className="text-gray-500 mt-4">尚無得獎紀錄。</p>
       ) : (
-        <div className="rounded-lg shadow overflow-hidden border border-gray-300">
+        <div className="rounded-lg shadow overflow-hidden border border-gray-300 mt-4">
           <div className="flex bg-gray-100 text-left text-sm font-semibold border-b border-gray-300">
             <div className="w-4/9 px-4 py-2">得獎者</div>
             <div className="w-4/9 px-4 py-2">獎品</div>
             <div className="w-1/9 px-4 py-2"></div>
           </div>
           <List
-            height={600}
+            height={650}
             itemCount={results.length}
             itemSize={40}
             width="100%"

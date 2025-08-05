@@ -107,7 +107,7 @@ export default function DrawResultViewer({ results, setResults }: Props) {
             <div className="w-1/9 px-4 py-2"></div>
           </div>
           <List
-            height={600}
+            height={650}
             itemCount={results.length}
             itemSize={40}
             width="100%"

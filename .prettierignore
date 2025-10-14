@@ -1,0 +1,38 @@
+# Node modules
+node_modules
+
+# Build output
+.next
+out
+
+# Dependencies caches
+pnpm-lock.yaml
+package-lock.json
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
+
+# OS / Editor files
+.vscode
+.DS_Store
+*.log
+
+# Git / CI
+.git
+.github
+eslint.config.mjs
+.prettierrc
+
+# Public static assets
+public
+
+# Compiled files
+*.min.js
+*.mjs
+*.min.css
+
+# Generated TypeScript declaration files
+*.d.ts

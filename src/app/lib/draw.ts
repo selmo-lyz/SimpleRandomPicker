@@ -18,15 +18,15 @@ export type DrawRules = {
 export function draw(
   candidates: ReadonlyArray<string>,
   prizes: ReadonlyArray<Prize>,
-  drawRules: Readonly<DrawRules>
+  drawRules: Readonly<DrawRules>,
 ): DrawResult[] {
   const individualPrizes: string[] = prizes.flatMap((prize: Prize) =>
-    Array.from({ length: prize.count }, () => prize.name)
+    Array.from({ length: prize.count }, () => prize.name),
   );
 
   const drawNoRepeat = (
     candidates: ReadonlyArray<string>,
-    prizes: ReadonlyArray<string>
+    prizes: ReadonlyArray<string>,
   ): DrawResult[] => {
     const shuffledCandidates = random.fisherYatesShuffle<string>(candidates);
     return prizes.map((prize: string, i: number) => ({
@@ -36,16 +36,15 @@ export function draw(
   };
   const drawAllowRepeat = (
     candidates: ReadonlyArray<string>,
-    prizes: ReadonlyArray<string>
-  ): DrawResult[] => (
+    prizes: ReadonlyArray<string>,
+  ): DrawResult[] =>
     prizes.map((prize: string) => ({
-      name: candidates[random.getRandomValue(0, candidates.length-1)],
+      name: candidates[random.getRandomValue(0, candidates.length - 1)],
       prize: prize,
-    }))
-  );
+    }));
   const drawingStrategy = {
     "no-repeat": drawNoRepeat,
-    "allow-repeat": drawAllowRepeat
+    "allow-repeat": drawAllowRepeat,
   };
 
   return drawingStrategy[drawRules.repeat](candidates, individualPrizes);

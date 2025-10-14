@@ -15,11 +15,8 @@ type RowProps = {
 };
 
 export default function DrawResultViewer({ results, setResults }: Props) {
-  const csvText = () => [
-    ...results.map(
-      (r) => `${r.name},${r.prize}`
-    )
-  ].join("\n");
+  const csvText = () =>
+    [...results.map((r) => `${r.name},${r.prize}`)].join("\n");
 
   const downloadCsv = () => {
     const blob = new Blob([csvText()], { type: "text/csv;charset=utf-8;" });
@@ -55,7 +52,9 @@ export default function DrawResultViewer({ results, setResults }: Props) {
       <span className="w-4/9 px-4 py-2 truncate">{candidate}</span>
       <span className="absolute opacity-0 select-text">,</span>
       <span className="w-4/9 px-4 py-2 truncate">{prize}</span>
-      <span className="absolute opacity-0 select-text"><br></br></span>
+      <span className="absolute opacity-0 select-text">
+        <br></br>
+      </span>
       <button
         onClick={() => removeResult(index)}
         className="w-1/9 flex-initial del-btn-bg hover:del-btn-bg text-white px-2 py-2 rounded"
@@ -67,7 +66,13 @@ export default function DrawResultViewer({ results, setResults }: Props) {
   );
   const Row = memo(ResultRow);
 
-  const renderRow = ({ index, style }: { index: number; style: React.CSSProperties }) => (
+  const renderRow = ({
+    index,
+    style,
+  }: {
+    index: number;
+    style: React.CSSProperties;
+  }) => (
     <Row
       index={index}
       style={style}
@@ -82,9 +87,9 @@ export default function DrawResultViewer({ results, setResults }: Props) {
         <h2 className="w-1/3 text-xl font-medium">得獎名單</h2>
         <div className="w-2/3 flex justify-end gap-8">
           <button
-          onClick={removeAllResult}
-          className="del-btn-bg hover:del-btn-bg text-white px-4 py-2 rounded"
-          disabled={results.length <= 0}
+            onClick={removeAllResult}
+            className="del-btn-bg hover:del-btn-bg text-white px-4 py-2 rounded"
+            disabled={results.length <= 0}
           >
             清除
           </button>

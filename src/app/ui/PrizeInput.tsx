@@ -7,7 +7,7 @@ type Props = {
   drawResult: ReadonlyArray<DrawResult>;
 };
 
-export default function PrizeInput({ prizes, setPrizes, drawResult}: Props) {
+export default function PrizeInput({ prizes, setPrizes, drawResult }: Props) {
   const [isCsvMode, setIsCsvMode] = useState(false);
   const [csvText, setCsvText] = useState("");
 
@@ -17,12 +17,12 @@ export default function PrizeInput({ prizes, setPrizes, drawResult}: Props) {
       setCsvText(lines.join("\n"));
     }
     setIsCsvMode(!isCsvMode);
-  }
+  };
 
   // 處理 CSV 文字變更，將內容轉成獎品陣列，並以此更新原獎品陣列
   const handleCsvChange = (text: Readonly<string>) => {
     setCsvText(text);
-    
+
     const lines = text.split("\n");
     const newPrizes: Prize[] = [];
     for (const line of lines) {
@@ -39,7 +39,7 @@ export default function PrizeInput({ prizes, setPrizes, drawResult}: Props) {
   const handlePrizeChange = (
     index: number,
     field: keyof Prize,
-    value: string
+    value: string,
   ) => {
     const newPrizes = [...prizes];
     if (field === "count") {
@@ -95,13 +95,15 @@ export default function PrizeInput({ prizes, setPrizes, drawResult}: Props) {
                 }
                 className="flex-auto border p-2 rounded w-1/2"
               />
-              
+
               <label className="flex-auto">
-                剩餘 {
-                  prizes[index].count - drawResult.reduce(
-                    (cnt, r) => (r.prize == prizes[index].name) ? cnt + 1 : cnt, 0
-                  )
-                } /
+                剩餘{" "}
+                {prizes[index].count -
+                  drawResult.reduce(
+                    (cnt, r) => (r.prize == prizes[index].name ? cnt + 1 : cnt),
+                    0,
+                  )}{" "}
+                /
               </label>
               <input
                 type="number"

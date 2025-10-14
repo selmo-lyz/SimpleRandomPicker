@@ -1,8 +1,8 @@
-const secureGetRandomValues = crypto.getRandomValues.bind(crypto)
+const secureGetRandomValues = crypto.getRandomValues.bind(crypto);
 
 export function getRandomValue(
   min: Readonly<number>,
-  max: Readonly<number>
+  max: Readonly<number>,
 ): number {
   const range = max - min + 1;
   const randArray = new Uint32Array(1);
@@ -20,7 +20,7 @@ export function getRandomValue(
 }
 
 export function fisherYatesShuffle<T>(arr: ReadonlyArray<T>): T[] {
-  const shuffledArr: T[] = [...arr]
+  const shuffledArr: T[] = [...arr];
   for (let i = shuffledArr.length - 1; i > 0; --i) {
     const j = getRandomValue(0, i);
     [shuffledArr[i], shuffledArr[j]] = [shuffledArr[j], shuffledArr[i]];

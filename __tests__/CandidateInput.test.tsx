@@ -19,7 +19,7 @@ describe("CandidateInput", () => {
     // GIVEN: a CandidateInput with valid props
     const mockOnChange = jest.fn();
     render(<CandidateInput onChange={mockOnChange} />);
-    
+
     // WHEN: its content is changed
     const textarea = screen.getByRole("textbox");
     fireEvent.change(textarea, {
@@ -34,7 +34,7 @@ describe("CandidateInput", () => {
     // GIVEN: a CandidateInput with valid props
     const mockOnChange = jest.fn();
     render(<CandidateInput onChange={mockOnChange} />);
-    
+
     // WHEN: its content is changed
     const textarea = screen.getByRole("textbox");
     fireEvent.change(textarea, {
@@ -43,14 +43,18 @@ describe("CandidateInput", () => {
 
     // THEN: onChange should be called with trimmed and filtered names
     expect(mockOnChange).toHaveBeenCalledTimes(1);
-    expect(mockOnChange).toHaveBeenCalledWith(["CandidateA", "CandidateB", "CandidateC"]);
+    expect(mockOnChange).toHaveBeenCalledWith([
+      "CandidateA",
+      "CandidateB",
+      "CandidateC",
+    ]);
   });
 
   it("sends empty array when input is cleared", () => {
     // GIVEN: a CandidateInput with valid props
     const mockOnChange = jest.fn();
     render(<CandidateInput onChange={mockOnChange} />);
-    
+
     // WHEN: its content is cleared
     const textarea = screen.getByRole("textbox");
     fireEvent.change(textarea, {

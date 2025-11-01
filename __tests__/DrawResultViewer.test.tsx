@@ -11,10 +11,7 @@ describe("DrawResultViewer", () => {
     const mockSetResults = (result: DrawResult[]) => {};
 
     // WHEN: the component is rendered
-    render(<DrawResultViewer 
-      results={results}
-      setResults={mockSetResults}
-    />);
+    render(<DrawResultViewer results={results} setResults={mockSetResults} />);
 
     // THEN: a empty message should be rendered
     const msg = screen.getByText("尚無得獎紀錄。");
@@ -28,12 +25,9 @@ describe("DrawResultViewer", () => {
       { name: "CandidateB", prize: "PrizeB" },
     ];
     const mockSetResults = (result: DrawResult[]) => {};
-    
+
     // WHEN: the component is rendered
-    render(<DrawResultViewer 
-      results={results}
-      setResults={mockSetResults}
-    />);
+    render(<DrawResultViewer results={results} setResults={mockSetResults} />);
 
     // THEN: all results should be rendered
     expect(screen.getByText("CandidateA")).toBeInTheDocument();
@@ -49,12 +43,9 @@ describe("DrawResultViewer", () => {
       { name: "CandidateB", prize: "PrizeB" },
     ];
     const mockSetResults = (result: DrawResult[]) => {};
-    
+
     // WHEN: the component is rendered
-    render(<DrawResultViewer 
-      results={results}
-      setResults={mockSetResults}
-    />);
+    render(<DrawResultViewer results={results} setResults={mockSetResults} />);
 
     // THEN: all results should be rendered
     const downloadBtn = screen.getByRole("button", { name: "清除" });
@@ -70,12 +61,9 @@ describe("DrawResultViewer", () => {
       { name: "CandidateB", prize: "PrizeB" },
     ];
     const mockSetResults = (result: DrawResult[]) => {};
-    
+
     // WHEN: the component is rendered
-    render(<DrawResultViewer 
-      results={results}
-      setResults={mockSetResults}
-    />);
+    render(<DrawResultViewer results={results} setResults={mockSetResults} />);
 
     // THEN: all results should have a delete button
     const deleteBtns = screen.getAllByRole("button", { name: "X" });
@@ -90,10 +78,7 @@ describe("DrawResultViewer", () => {
     ];
     const mockSetResults = jest.fn();
 
-    render(<DrawResultViewer 
-      results={results}
-      setResults={mockSetResults}
-    />);
+    render(<DrawResultViewer results={results} setResults={mockSetResults} />);
 
     // WHEN: the clear button is clicked
     const clearBtn = screen.getByRole("button", { name: "清除" });
@@ -111,11 +96,8 @@ describe("DrawResultViewer", () => {
       { name: "CandidateC", prize: "PrizeC" },
     ];
     const mockSetResults = jest.fn();
-    
-    render(<DrawResultViewer 
-      results={results}
-      setResults={mockSetResults}
-    />);
+
+    render(<DrawResultViewer results={results} setResults={mockSetResults} />);
 
     // WHEN: the clear button of second result is clicked
     const deleteBtns = screen.getAllByRole("button", { name: "X" });
@@ -127,5 +109,4 @@ describe("DrawResultViewer", () => {
       ...results.slice(2),
     ]);
   });
-
 });

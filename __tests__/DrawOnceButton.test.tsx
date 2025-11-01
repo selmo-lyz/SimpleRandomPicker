@@ -7,10 +7,7 @@ import DrawOnceButton from "../src/app/ui/DrawOnceButton";
 describe("DrawOnceButton", () => {
   it("renders a button", () => {
     // GIVEN: valid props for DrawOnceButton
-    const candidates: string[] = [
-      "CandidateA",
-      "CandidateB",
-    ];
+    const candidates: string[] = ["CandidateA", "CandidateB"];
     const prizes: Prize[] = [
       { name: "PrizeA", count: 1 },
       { name: "PrizeB", count: 1 },
@@ -20,7 +17,7 @@ describe("DrawOnceButton", () => {
       order: "first",
     };
     const results: DrawResult[] = [];
-    
+
     // WHEN: the component is redered
     render(
       <DrawOnceButton
@@ -28,8 +25,8 @@ describe("DrawOnceButton", () => {
         prizes={prizes}
         drawRules={drawRules}
         results={results}
-        onDraw={ ()=>{} }
-      />
+        onDraw={() => {}}
+      />,
     );
 
     // THEN: a button should be rendered
@@ -39,10 +36,7 @@ describe("DrawOnceButton", () => {
 
   it("calls onDraw when clicked", async () => {
     // GIVEN: a DrawOnceButton with valid props
-    const candidates: string[] = [
-      "CandidateA",
-      "CandidateB",
-    ];
+    const candidates: string[] = ["CandidateA", "CandidateB"];
     const prizes: Prize[] = [
       { name: "PrizeA", count: 1 },
       { name: "PrizeB", count: 1 },
@@ -61,9 +55,9 @@ describe("DrawOnceButton", () => {
         drawRules={drawRules}
         results={results}
         onDraw={onDrawMock}
-      />
+      />,
     );
-    
+
     // WHEN: the button is clicked
     const drawOnceButton = screen.getByRole("button");
     await userEvent.click(drawOnceButton);
@@ -75,10 +69,7 @@ describe("DrawOnceButton", () => {
 
   it("alerts when no prize is given", async () => {
     // GIVEN: a DrawOnceButton with no prize is given
-    const candidates: string[] = [
-      "CandidateA",
-      "CandidateB",
-    ];
+    const candidates: string[] = ["CandidateA", "CandidateB"];
     const prizes: Prize[] = [];
     const drawRules: DrawRules = {
       repeat: "no-repeat",
@@ -94,9 +85,9 @@ describe("DrawOnceButton", () => {
         drawRules={drawRules}
         results={results}
         onDraw={() => {}}
-      />
+      />,
     );
-    
+
     // WHEN: the button is clicked
     const drawOnceButton = screen.getByRole("button");
     await userEvent.click(drawOnceButton);
@@ -127,9 +118,9 @@ describe("DrawOnceButton", () => {
         drawRules={drawRules}
         results={results}
         onDraw={() => {}}
-      />
+      />,
     );
-    
+
     // WHEN: the button is clicked
     const drawOnceButton = screen.getByRole("button");
     await userEvent.click(drawOnceButton);
@@ -141,20 +132,13 @@ describe("DrawOnceButton", () => {
 
   it("alerts when all prizes have been claimed", async () => {
     // GIVEN: a DrawOnceButton with too few candidates
-    const candidates: string[] = [
-      "CandidateA",
-      "CandidateB",
-    ];
-    const prizes: Prize[] = [
-      { name: "PrizeA", count: 1 },
-    ];
+    const candidates: string[] = ["CandidateA", "CandidateB"];
+    const prizes: Prize[] = [{ name: "PrizeA", count: 1 }];
     const drawRules: DrawRules = {
       repeat: "no-repeat",
       order: "first",
     };
-    const results: DrawResult[] = [
-      { name: "CandidateA", prize: "PrizeA" },
-    ];
+    const results: DrawResult[] = [{ name: "CandidateA", prize: "PrizeA" }];
 
     const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
     render(
@@ -164,9 +148,9 @@ describe("DrawOnceButton", () => {
         drawRules={drawRules}
         results={results}
         onDraw={() => {}}
-      />
+      />,
     );
-    
+
     // WHEN: the button is clicked
     const drawOnceButton = screen.getByRole("button");
     await userEvent.click(drawOnceButton);

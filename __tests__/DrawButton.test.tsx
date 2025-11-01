@@ -7,10 +7,7 @@ import DrawButton from "../src/app/ui/DrawButton";
 describe("DrawButton", () => {
   it("renders a button", () => {
     // GIVEN: valid props for DrawButton
-    const candidates: string[] = [
-      "CandidateA",
-      "CandidateB",
-    ];
+    const candidates: string[] = ["CandidateA", "CandidateB"];
     const prizes: Prize[] = [
       { name: "PrizeA", count: 1 },
       { name: "PrizeB", count: 1 },
@@ -20,7 +17,7 @@ describe("DrawButton", () => {
       order: "first",
     };
     const results: DrawResult[] = [];
-    
+
     // WHEN: the component is redered
     render(
       <DrawButton
@@ -28,8 +25,8 @@ describe("DrawButton", () => {
         prizes={prizes}
         drawRules={drawRules}
         results={results}
-        onDraw={ ()=>{} }
-      />
+        onDraw={() => {}}
+      />,
     );
 
     // THEN: a button should be rendered
@@ -39,10 +36,7 @@ describe("DrawButton", () => {
 
   it("calls onDraw when clicked", async () => {
     // GIVEN: a DrawButton with valid props
-    const candidates: string[] = [
-      "CandidateA",
-      "CandidateB",
-    ];
+    const candidates: string[] = ["CandidateA", "CandidateB"];
     const prizes: Prize[] = [
       { name: "PrizeA", count: 1 },
       { name: "PrizeB", count: 1 },
@@ -61,9 +55,9 @@ describe("DrawButton", () => {
         drawRules={drawRules}
         results={results}
         onDraw={onDrawMock}
-      />
+      />,
     );
-    
+
     // WHEN: the button is clicked
     const drawButton = screen.getByRole("button");
     await userEvent.click(drawButton);
@@ -75,10 +69,7 @@ describe("DrawButton", () => {
 
   it("alerts when no prize is given", async () => {
     // GIVEN: a DrawButton with no prize is given
-    const candidates: string[] = [
-      "CandidateA",
-      "CandidateB",
-    ];
+    const candidates: string[] = ["CandidateA", "CandidateB"];
     const prizes: Prize[] = [];
     const drawRules: DrawRules = {
       repeat: "no-repeat",
@@ -94,9 +85,9 @@ describe("DrawButton", () => {
         drawRules={drawRules}
         results={results}
         onDraw={() => {}}
-      />
+      />,
     );
-    
+
     // WHEN: the button is clicked
     const drawButton = screen.getByRole("button");
     await userEvent.click(drawButton);
@@ -127,9 +118,9 @@ describe("DrawButton", () => {
         drawRules={drawRules}
         results={results}
         onDraw={() => {}}
-      />
+      />,
     );
-    
+
     // WHEN: the button is clicked
     const drawButton = screen.getByRole("button");
     await userEvent.click(drawButton);
@@ -141,9 +132,7 @@ describe("DrawButton", () => {
 
   it("alerts when there is not enough candidate is given", async () => {
     // GIVEN: a DrawButton with too few candidates
-    const candidates: string[] = [
-      "CandidateA",
-    ];
+    const candidates: string[] = ["CandidateA"];
     const prizes: Prize[] = [
       { name: "PrizeA", count: 1 },
       { name: "PrizeB", count: 1 },
@@ -162,9 +151,9 @@ describe("DrawButton", () => {
         drawRules={drawRules}
         results={results}
         onDraw={() => {}}
-      />
+      />,
     );
-    
+
     // WHEN: the button is clicked
     const drawButton = screen.getByRole("button");
     await userEvent.click(drawButton);
@@ -176,20 +165,13 @@ describe("DrawButton", () => {
 
   it("alerts when all prizes have been claimed", async () => {
     // GIVEN: a DrawButton with too few candidates
-    const candidates: string[] = [
-      "CandidateA",
-      "CandidateB",
-    ];
-    const prizes: Prize[] = [
-      { name: "PrizeA", count: 1 },
-    ];
+    const candidates: string[] = ["CandidateA", "CandidateB"];
+    const prizes: Prize[] = [{ name: "PrizeA", count: 1 }];
     const drawRules: DrawRules = {
       repeat: "no-repeat",
       order: "first",
     };
-    const results: DrawResult[] = [
-      { name: "CandidateA", prize: "PrizeA" },
-    ];
+    const results: DrawResult[] = [{ name: "CandidateA", prize: "PrizeA" }];
 
     const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
     render(
@@ -199,9 +181,9 @@ describe("DrawButton", () => {
         drawRules={drawRules}
         results={results}
         onDraw={() => {}}
-      />
+      />,
     );
-    
+
     // WHEN: the button is clicked
     const drawButton = screen.getByRole("button");
     await userEvent.click(drawButton);

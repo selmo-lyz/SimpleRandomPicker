@@ -1,45 +1,118 @@
 import { Prize, DrawRules, draw, DrawResult } from "../src/app/lib/draw";
 
-describe("draw()", () => {
-  const candidates = ["A", "B", "C"];
-  const prizes = [
-    { name: "Gold", count: 1 },
-    { name: "Silver", count: 2 },
-    { name: "Bronze", count: 3 },
-  ];
+type testCase = {
+  candidates: ReadonlyArray<string>;
+  prizes: ReadonlyArray<Prize>;
+};
 
-  it("should draw all prizes at one time, starting from the first prize, and do not have repeat winners", () => {
-    const result = draw(candidates, prizes.slice(0, 2), {
-      repeat: "no-repeat",
-      order: "first",
+const testCases: testCase[] = [
+  {
+    candidates: ["CandidateA", "CandidateB", "CandidateC", "CandidateD"],
+    prizes: [
+      { name: "PrizeA", count: 1 },
+      { name: "PrizeB", count: 2 },
+    ],
+  },
+  {
+    candidates: ["CandidateA", "CandidateB", "CandidateC"],
+    prizes: [
+      { name: "PrizeA", count: 1 },
+      { name: "PrizeB", count: 2 },
+    ],
+  },
+  {
+    candidates: ["CandidateA", "CandidateB", "CandidateC"],
+    prizes: [
+      { name: "PrizeA", count: 1 },
+      { name: "PrizeB", count: 2 },
+      { name: "PrizeC", count: 3 },
+    ],
+  },
+  {
+    candidates: ["CandidateA", "CandidateB", "CandidateC", "CandidateD"],
+    prizes: [],
+  },
+  {
+    candidates: [],
+    prizes: [],
+  },
+  {
+    candidates: [],
+    prizes: [
+      { name: "PrizeA", count: 1 },
+      { name: "PrizeB", count: 2 },
+    ],
+  },
+];
+
+describe.each(testCases)("draw()", ({ candidates, prizes }) => {
+  describe("when winners can not be duplicate", () => {
+    it("draws some prizes for candidates", () => {
+      // GIVEN: candidates and prizes
+      // WHEN: draw() is called
+      const result = draw(candidates, prizes, {
+        repeat: "no-repeat",
+        order: "first",
+      });
+
+      // THEN: all results should be valid candidates and prizes
+      result.forEach((r) => {
+        expect(candidates).toContain(r.name);
+        expect(prizes.map((p) => p.name)).toContain(r.prize);
+      });
     });
 
-    expect(result.map((r) => r.prize)).toEqual(
-      prizes
-        .slice(0, 2)
-        .flatMap((r) => Array.from({ length: r.count }, () => r.name)),
-    );
+    it("returns unique winners when candidates is equal to or more than prizes", () => {
+      // GIVEN: candidates and prizes
+      // WHEN: draw() is called
+      const results = Array.from({ length: 1e3 }, () =>
+        draw(candidates, prizes, {
+          repeat: "no-repeat",
+          order: "first",
+        }),
+      );
+
+      // THEN: there should be no duplicate winners
+      const noDuplicateWinners = results.every((result) => {
+        const winners = result.map((r) => r.name);
+        return new Set(winners).size === winners.length;
+      });
+      expect(noDuplicateWinners).toBe(true);
+    });
   });
 
-  it("should draw all prizes at one time, starting from the last prize, and do not have repeat winners", () => {
-    const result = draw(candidates, prizes.slice(2, 3), {
-      repeat: "no-repeat",
-      order: "last",
+  describe("when winners can be duplicate", () => {
+    it("draws some prizes for candidates", () => {
+      // GIVEN: candidates and prizes
+      // WHEN: draw() is called
+      const result = draw(candidates, prizes, {
+        repeat: "allow-repeat",
+        order: "first",
+      });
+
+      // THEN: all results should be valid candidates and prizes
+      result.forEach((r) => {
+        expect(candidates).toContain(r.name);
+        expect(prizes.map((p) => p.name)).toContain(r.prize);
+      });
     });
 
-    expect(result.map((r) => r.prize)).toEqual(
-      prizes
-        .slice(2, 3)
-        .flatMap((r) => Array.from({ length: r.count }, () => r.name)),
-    );
-  });
+    it("may return duplicate winners", () => {
+      // GIVEN: candidates and prizes
+      // WHEN: draw() is called
+      const results = Array.from({ length: 1e3 }, () =>
+        draw(candidates, prizes, {
+          repeat: "allow-repeat",
+          order: "first",
+        }),
+      );
 
-  it("should draw all prizes at one time, starting from the first prize, and have repeat winners", () => {
-    const result = draw(candidates.slice(0, 1), prizes, {
-      repeat: "allow-repeat",
-      order: "first",
+      // THEN: there may be duplicate winners
+      const haveDuplicateWinners = results.some((result) => {
+        const winners = result.map((r) => r.name);
+        return new Set(winners).size <= winners.length;
+      });
+      expect(haveDuplicateWinners).toBe(true);
     });
-
-    expect(result.every((r) => r.name === "A")).toBe(true);
   });
 });

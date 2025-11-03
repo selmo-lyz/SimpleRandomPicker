@@ -32,7 +32,7 @@ export function draw(
     return prizes.map((prize: string, i: number) => ({
       name: shuffledCandidates[i],
       prize: prize,
-    }));
+    })).filter((r) => (r.name !== undefined));
   };
   const drawAllowRepeat = (
     candidates: ReadonlyArray<string>,
@@ -41,7 +41,7 @@ export function draw(
     prizes.map((prize: string) => ({
       name: candidates[random.getRandomValue(0, candidates.length - 1)],
       prize: prize,
-    }));
+    })).filter((r) => (r.name !== undefined));
   const drawingStrategy = {
     "no-repeat": drawNoRepeat,
     "allow-repeat": drawAllowRepeat,

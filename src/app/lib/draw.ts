@@ -29,19 +29,23 @@ export function draw(
     prizes: ReadonlyArray<string>,
   ): DrawResult[] => {
     const shuffledCandidates = random.fisherYatesShuffle<string>(candidates);
-    return prizes.map((prize: string, i: number) => ({
-      name: shuffledCandidates[i],
-      prize: prize,
-    }));
+    return prizes
+      .map((prize: string, i: number) => ({
+        name: shuffledCandidates[i],
+        prize: prize,
+      }))
+      .filter((r) => r.name !== undefined);
   };
   const drawAllowRepeat = (
     candidates: ReadonlyArray<string>,
     prizes: ReadonlyArray<string>,
   ): DrawResult[] =>
-    prizes.map((prize: string) => ({
-      name: candidates[random.getRandomValue(0, candidates.length - 1)],
-      prize: prize,
-    }));
+    prizes
+      .map((prize: string) => ({
+        name: candidates[random.getRandomValue(0, candidates.length - 1)],
+        prize: prize,
+      }))
+      .filter((r) => r.name !== undefined);
   const drawingStrategy = {
     "no-repeat": drawNoRepeat,
     "allow-repeat": drawAllowRepeat,
